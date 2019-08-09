@@ -89,16 +89,16 @@
 
                                     {% if formValues %}
                                         {%  if difference and (str(i)+str(j) in difference) %}
-                                            <input id="redBorder" autocomplete="false" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }} value={{  formValues[str(i)+str(j)] }} >
+                                            <input id="redBorder" autocomplete="off" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }} value={{  formValues[str(i)+str(j)] }} >
                                         {% else %}
                                             <input autocomplete="false" type="text"  maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }} value={{  formValues[str(i)+str(j)] }} >
                                         {% endif %}
 
                                     {% else %}
                                         {%  if difference and (str(i)+str(j) in difference) %}
-                                            <input id="redBorder" autocomplete="false" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }}>
+                                            <input id="redBorder" autocomplete="off" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }}>
                                         {% else %}
-                                            <input autocomplete="false" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }}>
+                                            <input autocomplete="off" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }}>
                                         {% endif %}
 
                                     {% endif %}

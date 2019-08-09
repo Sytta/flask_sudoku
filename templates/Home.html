@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+    <script type="javascript" src="{{ url_for('static', filename='js/entry.js') }}"> </script>
+    <script>
+
+    function isNumber(event) {
+        var keycode = event.keyCode;
+
+        if (keycode < 49 || keycode > 57) {
+            event.target.value = ""
+        }
+    }
+
+    var currentTime = parseInt(sessionStorage.getItem('timer'));
+    if (isNaN(currentTime)) {
+        currentTime = 0
+    }
+
+    function startTimer() {
+        var timer = setInterval(function () {
+            currentTime = currentTime + 1;
+
+            var hours = Math.floor(currentTime / 3600);
+            var minutes = Math.floor((currentTime % 3600) / 60);
+            var seconds = Math.floor(currentTime % 60);
+
+            // Always show 2 digit
+            minutes = minutes < 10 ? "0" + minutes : minutes;
+            seconds = seconds < 10 ? "0" + seconds : seconds;
+
+            // Output the result in an element with id="timer"
+            document.getElementById("timer").innerHTML = +hours + " : " + minutes + " : " + seconds;
+
+            sessionStorage.setItem('timer', currentTime);
+            console.log("currentTime: " + currentTime);
+        }, 1000);
+
+    }
+
+    startTimer();
+
+    function restartTimer() {
+        sessionStorage.setItem('timer', 0);
+    }
+
+
+    </script>
+
+    <!-- CMD (or CTRL on Windows) + SHIFT + R -->
+</head>
+
+
+<body>
+    <h1>Sudoku</h1>
+
+
+    <div class="parentDiv">
+        <div id="timer_div">
+            <span id="timer"> 0 : 00 : 00 </span>
+        </div>
+
+        <div id="sudoku_div">
+            {% if message %}
+                <div id="message"><strong>{{ message }}</strong></div>
+            {% endif %}
+            <form autocomplete="off" action="http://127.0.0.1:5000/" method="post" id="sudoku_form">
+                <div id="sudoku_grid">
+                <table>
+
+                <colgroup><col><col><col>
+                <colgroup><col><col><col>
+                <colgroup><col><col><col>
+
+                {% for i, row in enumerate(sudoku) %}
+                    {% if loop.index0 == 0 %}
+                        <tbody>
+                    {% endif %}
+                        <tr>
+                            {% for j, value in enumerate(row) %}
+
+                                <td>
+                                {% if value == 0 %}
+
+                                    {% if formValues %}
+                                        {%  if difference and (str(i)+str(j) in difference) %}
+                                            <input id="redBorder" autocomplete="false" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }} value={{  formValues[str(i)+str(j)] }} >
+                                        {% else %}
+                                            <input autocomplete="false" type="text"  maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }} value={{  formValues[str(i)+str(j)] }} >
+                                        {% endif %}
+
+                                    {% else %}
+                                        {%  if difference and (str(i)+str(j) in difference) %}
+                                            <input id="redBorder" autocomplete="false" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }}>
+                                        {% else %}
+                                            <input autocomplete="false" type="text" maxlength="1" size="1" onkeyup=isNumber(event); name={{ str(i)+str(j) }}>
+                                        {% endif %}
+
+                                    {% endif %}
+                                {% else %}
+                                    {{ value }}
+                                {% endif %}
+                                </td>
+
+                            {% endfor %}
+                        </tr>
+                    {% if loop.index0 == 2 or loop.index0 == 5 %}
+                        </tbody>
+                        <tbody>
+                    {% endif %}
+                    {% if loop.index0 == 8 %}
+                        </tbody>
+                    {% endif %}
+                {% endfor %}
+                </table>
+                </div>
+
+            </form>
+
+            <div id="button1">
+                <button type="submit" form="sudoku_form" value="Submit">Submit</button>
+            </div>
+
+            {% if canChange %}
+                <div id="button2">
+                    <form action="/newsudoku" method="get">
+                        <button type="submit" value="ChangeSudoku" onclick=restartTimer()>Next</button>
+                    </form>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>

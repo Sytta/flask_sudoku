@@ -1,0 +1,95 @@
+
+table {
+    border-collapse: collapse;
+    /*width:500px;*/
+    /*height:500px;*/
+    background-color:lightgray;
+    /*font-size: 18px;*/
+    /*position:fixed;*/
+    /*margin-left:-250px; !* half of width *!*/
+    /*margin-top:-250px;  !* half of height *!*/
+}
+
+colgroup, tbody {
+    border: solid medium black;
+}
+
+td {
+    border: solid thin;
+    height: 3em;
+    width: 3em;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    font-size: 1.2em;
+}
+
+input {
+    width: 90%;
+    height: 100%;
+    text-align: center;
+    border: none;
+    font-size: 1em;
+}
+
+/* Hide HTML5 Up and Down arrows. */
+/*input[type="number"]::-webkit-outer-spin-button,*/
+/*input[type="number"]::-webkit-inner-spin-button {*/
+/*    -webkit-appearance: none;*/
+/*    !*margin: 0;*!*/
+/*}*/
+
+/*input[type="number"] {*/
+/*    -moz-appearance: textfield;*/
+/*}*/
+
+#sudoku_grid {
+    margin-left: 30%;
+    /*position: absolute;*/
+}
+
+#button1 {
+    margin-left: 47%;
+    margin-top: 1%;
+    width: 25%;
+    position: relative;
+    color: aqua;
+}
+
+#button2 {
+    margin-left: 45%;
+    margin-top: 1%;
+    width: 25%;
+    position: relative;
+    color: aqua;
+}
+
+#message {
+    margin-left: 45%;
+    text-align: center;
+}
+
+#redBorder {
+    border: 2px solid lightcoral;
+}
+
+.parentDiv div {
+    float: left;
+    clear: none;
+}
+
+#sudoku_div {
+    width: 80%;
+    height: 100%;
+}
+
+#timer_div {
+    text-align: center;
+    margin-top: 15%;
+    margin-left: 5%;
+}
+
+#timer {
+    font-size: xx-large;
+    left: 15%;
+}

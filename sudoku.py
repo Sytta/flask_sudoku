@@ -257,7 +257,7 @@ def generateSudoku(sudoku_grid):
     return grid
 
 
-if __name__ == '__main__':
-    sudoku = randomizeSudoku()
-    print(sudoku, '\n')
-    print(generateSudoku(sudoku))
+# if __name__ == '__main__':
+#     sudoku = randomizeSudoku()
+#     print(sudoku, '\n')
+#     print(generateSudoku(sudoku))

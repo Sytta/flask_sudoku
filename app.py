@@ -66,6 +66,6 @@ def changeSudoku():
 if __name__ == '__main__':
     p = Process(target=construct_sudokus, args=(sudokuQueue,))
     p.start()
-    app.run(threaded=True)
+    app.run(threaded=True, debug=True)
     p.join()
 

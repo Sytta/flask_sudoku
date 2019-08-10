@@ -1,4 +1,4 @@
-import numpy as np
+from numpy import array, zeros_like
 import random
 from collections import deque
 from copy import deepcopy
@@ -15,7 +15,7 @@ SQUARE_SIZE = 3
 SUDOKU_SIZE = 9
 EMPTY_TILES = 45
 
-grid = np.array([
+grid = array([
         [1, 2, 3, 4, 5, 6, 7, 8, 9],
         [4, 5, 6, 7, 8, 9, 1, 2, 3],
         [7, 8, 9, 1, 2, 3, 4, 5, 6],
@@ -213,7 +213,7 @@ def solveSudoku(sudoku, zeroIndexes, grid):
 
 def isSolvable(sudoku):
     zeros = getZeroIndexes(sudoku)
-    input_grid = np.zeros_like(sudoku)
+    input_grid = zeros_like(sudoku)
     return solveSudoku(sudoku, zeros, input_grid)
 
 

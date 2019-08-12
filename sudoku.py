@@ -1,4 +1,3 @@
-from numpy import array, zeros_like
 import random
 from collections import deque
 from copy import deepcopy
@@ -15,7 +14,7 @@ SQUARE_SIZE = 3
 SUDOKU_SIZE = 9
 EMPTY_TILES = 45
 
-grid = array([
+grid = [
         [1, 2, 3, 4, 5, 6, 7, 8, 9],
         [4, 5, 6, 7, 8, 9, 1, 2, 3],
         [7, 8, 9, 1, 2, 3, 4, 5, 6],
@@ -25,7 +24,7 @@ grid = array([
         [3, 4, 5, 6, 7, 8, 9, 1, 2],
         [6, 7, 8, 9, 1, 2, 3, 4, 5],
         [9, 1, 2, 3, 4, 5, 6, 7, 8]
-    ])
+    ]
 
 
 def swap(c1, c2):
@@ -156,8 +155,8 @@ def validateRow(sudoku, entry, row):
 
 
 def validateColumn(sudoku, entry, col):
-    for i in sudoku[:, col]:
-        if i == entry:
+    for row in sudoku:
+        if row[col] == entry:
             return False
 
     return True
@@ -213,7 +212,11 @@ def solveSudoku(sudoku, zeroIndexes, grid):
 
 def isSolvable(sudoku):
     zeros = getZeroIndexes(sudoku)
-    input_grid = zeros_like(sudoku)
+    input_grid = deepcopy(sudoku)
+    for i in range(SUDOKU_SIZE):
+        for j in range(SUDOKU_SIZE):
+            input_grid[i][j] = 0
+
     return solveSudoku(sudoku, zeros, input_grid)
 
 
@@ -257,7 +260,7 @@ def generateSudoku(sudoku_grid):
     return grid
 
 
-# if __name__ == '__main__':
-#     sudoku = randomizeSudoku()
-#     print(sudoku, '\n')
-#     print(generateSudoku(sudoku))
+if __name__ == '__main__':
+    sudoku = randomizeSudoku()
+    print(sudoku, '\n')
+    print(generateSudoku(sudoku))

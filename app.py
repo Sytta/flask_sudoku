@@ -37,7 +37,7 @@ def home():
 
     if request.method == 'POST':
         result = request.form.to_dict()  # sudoku form
-
+        answer_key = construct_answer_key(sudoku, sudoku_grid)
         print(result)
         print(answer_key)
 

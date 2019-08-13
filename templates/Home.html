@@ -2,11 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hello World!</title>
+    <title>Sudoku</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
-    <script type="javascript" src="{{ url_for('static', filename='js/entry.js') }}"> </script>
     <script>
 
     function isNumber(event) {
@@ -38,7 +37,6 @@
             document.getElementById("timer").innerHTML = +hours + " : " + minutes + " : " + seconds;
 
             sessionStorage.setItem('timer', currentTime);
-            console.log("currentTime: " + currentTime);
         }, 1000);
 
     }

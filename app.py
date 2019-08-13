@@ -33,7 +33,7 @@ answer_key = construct_answer_key(sudoku, sudoku_grid)
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-    global sudoku_grid, sudoku, answer_key, sudokuQueue
+    global sudoku_grid, sudoku, sudokuQueue
 
     if request.method == 'POST':
         result = request.form.to_dict()  # sudoku form

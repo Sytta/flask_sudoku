@@ -10,8 +10,8 @@ formValues = [[]]
 
 def construct_answer_key(sudoku_answer, sudoku_grid):
     answer_key =  dict()
-    for row in range(0, SUDOKU_SIZE):
-        for column in range(0, SUDOKU_SIZE):
+    for row in range(SUDOKU_SIZE):
+        for column in range(SUDOKU_SIZE):
             if sudoku_grid[row][column] == 0:
                 answer_key["{}{}".format(row, column)] = str(sudoku_answer[row][column])
     return answer_key
@@ -38,8 +38,8 @@ def home():
     if request.method == 'POST':
         result = request.form.to_dict()  # sudoku form
         answer_key = construct_answer_key(sudoku, sudoku_grid)
-        print(result)
-        print(answer_key)
+        print("result: ", result)
+        print("answer", answer_key)
 
         if result == answer_key: # user solved the sudoku
             return render_template('Home.html', message="Good job!", sudoku=sudoku_grid, enumerate=enumerate, str=str, formValues=result, canChange=True)
